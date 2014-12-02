@@ -1,5 +1,16 @@
-A chrome plugin that wraps the pagerduty mobile site, and supports notifications.
+A chrome plugin that wraps the [PagerDuty](http://pagerduty.com) mobile site, and supports notifications.
 
+Usage:
+====
+
+1. Download the CRX file.
+2. Go to [chrome://extensions](chrome://extensions) and drag it in.
+3. Click the PD icon in the menu bar.
+4. Enter your email, subdomain, and a (read-only) [API key](https://support.pagerduty.com/hc/en-us/articles/202829310-Generating-an-API-Key).
+5. Enjoy!
+
+Features:
+====
 
 Notify you when you're assigned a new incident
 
@@ -14,10 +25,4 @@ Open a mobile web interface to see and manage incidents
 ![Open a mobile web interface to see and manage incidents](https://www.evernote.com/shard/s367/sh/4785daff-a7da-469b-9957-7640497ee370/21546266296ea286c2b70e9deac4837d/res/7131dad2-bc38-4033-94f2-1f96792f8c57/skitch.png)
 
 
-Usage:
 
-1. Download the CRX file.
-2. Go to chrome://extensions and drag it in.
-3. Click the PD icon in the menu bar.
-4. Enter your email, subdomain, and a (read-only) API key.
-5. Enjoy!
