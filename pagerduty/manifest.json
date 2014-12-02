@@ -1,0 +1,34 @@
+{
+    "name": "PagerDuty",
+    "description": "A wrapper for the PagerDuty mobile site",
+    "version": "1.0",
+    "options_page": "options.html",
+    "permissions": [
+        "tabs", "storage", "notifications", "alarms", "https://*.pagerduty.com/*"
+    ],
+    "background": {
+        "scripts": [
+            "jquery-2.1.1.min.js",
+            "background.js"
+        ],
+        "persistent": false
+    },
+    "content_scripts": [
+        {
+            "matches": [ "https://m.pagerduty.com/*"],
+            "css": ["pagerduty.css"]
+        },
+        {
+            "matches": [ "https://app.pagerduty.com/accounts/search?*"],
+            "js": ["login.js"]
+        }
+    ],
+    "browser_action": {
+        "default_title": "Launch PagerDuty",
+        "default_icon": "icon16.png"
+    },
+    "manifest_version": 2,
+    "icons": { "16": "icon16.png",
+               "48": "icon48.png",
+              "128": "icon128.png" }
+}
