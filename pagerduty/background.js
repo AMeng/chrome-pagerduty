@@ -52,37 +52,45 @@ function fetch_incidents(options, callback) {
 function notify(options, data) {
     if(data['total'] != 0) {
         incident_count = data['total'];
-        chrome.browserAction.setBadgeText({text: String(data['total'])});
-        message = 'You have ' + data['total'] + ' incidents assgined to you.';
-        incidents = data['incidents'].map(function(incident) {
-            return {
-                title: incident['service']['name'],
-                message: '' + incident['trigger_summary_data']['description']
-            };
+        triggered = data['incidents'].filter(function(incident) {
+            return incident['status'] == 'triggered';
         });
-        if(incident_count > 1) {
-            notification_details = {
-                title: 'Pagerduty - ' + incident_count + ' Incidents',
-                iconUrl: 'icon48.png',
-                type: 'list',
-                message: '',
-                contextMessage: message,
-                items: incidents
+        acknowledged = data['incidents'].filter(function(incident) {
+            return incident['status'] == 'acknowledged';
+        });
+        chrome.browserAction.setBadgeText({text: String(data['total'])});
+        if(triggered.length > 0) {
+            message = 'You have ' + data['total'] + ' incidents assgined to you.';
+            incidents = data['incidents'].map(function(incident) {
+                return {
+                    title: incident['service']['name'],
+                    message: '' + incident['trigger_summary_data']['description']
+                };
+            });
+            if(incident_count > 1) {
+                notification_details = {
+                    title: 'Pagerduty - ' + incident_count + ' Incidents',
+                    iconUrl: 'icon48.png',
+                    type: 'list',
+                    message: '',
+                    contextMessage: message,
+                    items: incidents
+                }
+            } else {
+                notification_details = {
+                    title: 'Pagerduty - Incident ' + data['incidents'][0]['incident_number'],
+                    iconUrl: 'icon48.png',
+                    type: 'basic',
+                    message: incidents[0]['title'],
+                    contextMessage: incidents[0]['message'],
+                }
             }
-        } else {
-            notification_details = {
-                title: 'Pagerduty - Incident ' + data['incidents'][0]['incident_number'],
-                iconUrl: 'icon48.png',
-                type: 'basic',
-                message: incidents[0]['title'],
-                contextMessage: incidents[0]['message'],
-            }
+            chrome.notifications.create(
+                '',
+                notification_details,
+                function(notificationId) {}
+            );
         }
-        chrome.notifications.create(
-            '',
-            notification_details,
-            function(notificationId) {}
-        );
     } else {
         chrome.browserAction.setBadgeText({text: ''});
     }
