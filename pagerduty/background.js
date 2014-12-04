@@ -60,11 +60,18 @@ function notify(options, data) {
         });
         chrome.browserAction.setBadgeText({text: String(data['total'])});
         if(triggered.length > 0) {
-            message = 'You have ' + data['total'] + ' incidents assgined to you.';
+            contextMessage = 'You have ' + data['total'] + ' incidents assgined to you.';
             incidents = data['incidents'].map(function(incident) {
+                message = '** No incident description found **';
+                message_fields = ['description', 'subject'];
+                for(var prop in message_fields) {
+                    if(message_fields[prop] in incident['trigger_summary_data']) {
+                        message = incident['trigger_summary_data'][message_fields[prop]];
+                    }
+                }
                 return {
                     title: incident['service']['name'],
-                    message: '' + incident['trigger_summary_data']['description']
+                    message: message
                 };
             });
             if(incident_count > 1) {
@@ -73,7 +80,7 @@ function notify(options, data) {
                     iconUrl: 'icon48.png',
                     type: 'list',
                     message: '',
-                    contextMessage: message,
+                    contextMessage: contextMessage,
                     items: incidents
                 }
             } else {
