@@ -118,7 +118,8 @@ function open_panel() {
                         properties = {
                             url: 'https://m.pagerduty.com/',
                             type: 'panel',
-                            width: 360
+                            width: 360,
+                            height: 540
                         }
                         chrome.windows.create(properties, function(chromeWindow) {
                             panel_id = chromeWindow.id;
