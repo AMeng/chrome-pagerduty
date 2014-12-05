@@ -25,4 +25,5 @@ Open a mobile web interface to see and manage incidents
 ![Open a mobile web interface to see and manage incidents](https://www.evernote.com/shard/s367/sh/4785daff-a7da-469b-9957-7640497ee370/21546266296ea286c2b70e9deac4837d/res/7131dad2-bc38-4033-94f2-1f96792f8c57/skitch.png)
 
 
+The mobile interface is intended to be opened in a panel, which is an experimental chrome extension API. To enable it, go here: [chrome://flags/#enable-panels](chrome://flags/#enable-panels)
 

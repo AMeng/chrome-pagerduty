@@ -3,8 +3,6 @@ chrome.notifications.onClicked.addListener(open_panel);
 chrome.alarms.onAlarm.addListener(incident_check);
 chrome.alarms.create("incidentcheck", {periodInMinutes: 1});
 
-var panel_id = -1;
-
 
 function store_user_id(options, callback) {
     $.ajax('https://' + options["tenant"] + '.pagerduty.com/api/v1/users?query=' + options["email"], {
@@ -105,10 +103,10 @@ function notify(options, data) {
 
 
 function open_panel() {
-    chrome.storage.sync.get({email: '', token: ''}, function(options) {
+    chrome.storage.sync.get({email: '', token: '', panel_id: -1}, function(options) {
         if(options["email"].length > 0) {
             chrome.windows.getAll({}, function(window_list) {
-                chrome.windows.get(panel_id, function(chromeWindow) {
+                chrome.windows.get(options['panel_id'], function(chromeWindow) {
                     email_field = document.getElementById('email')
                     if(email_field != null) {
                         email_field.value = options.email;
@@ -122,7 +120,7 @@ function open_panel() {
                             height: 540
                         }
                         chrome.windows.create(properties, function(chromeWindow) {
-                            panel_id = chromeWindow.id;
+                            chrome.storage.sync.set({panel_id: chromeWindow.id}, function() {});
                         });
                     } else {
                         chrome.windows.update(chromeWindow.id, {focused: true});
