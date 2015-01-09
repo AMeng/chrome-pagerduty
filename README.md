@@ -3,11 +3,8 @@ A chrome plugin that wraps the [PagerDuty](http://pagerduty.com) mobile site, an
 Usage:
 ====
 
-1. Download the CRX file.
-2. Go to [chrome://extensions](chrome://extensions) and drag it in.
-3. Click the PD icon in the menu bar.
-4. Enter your email, subdomain, and a (read-only) [API key](https://support.pagerduty.com/hc/en-us/articles/202829310-Generating-an-API-Key).
-5. Enjoy!
+This is now available on the Chrome Web Store [here](https://chrome.google.com/webstore/detail/pagerduty/oanhanoldedeflnpnjokeeaeggkambcl).
+The mobile interface is intended to be opened in a panel, which is an experimental chrome extension API. The option to enable it can be found here: chrome://flags/#enable-panels
 
 Features:
 ====
@@ -23,7 +20,4 @@ Show incident counts
 Open a mobile web interface to see and manage incidents
 
 ![Open a mobile web interface to see and manage incidents](https://www.evernote.com/shard/s367/sh/4785daff-a7da-469b-9957-7640497ee370/21546266296ea286c2b70e9deac4837d/res/7131dad2-bc38-4033-94f2-1f96792f8c57/skitch.png)
-
-
-The mobile interface is intended to be opened in a panel, which is an experimental chrome extension API. To enable it, go here: [chrome://flags/#enable-panels](chrome://flags/#enable-panels)
 

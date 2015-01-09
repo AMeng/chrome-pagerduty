@@ -1,6 +1,6 @@
 {
     "name": "PagerDuty",
-    "description": "A wrapper for the PagerDuty mobile site",
+    "description": "Get your PagerDuty notifications in Chrome",
     "version": "1.3",
     "options_page": "options.html",
     "permissions": [
